@@ -1,0 +1,130 @@
+-- Connect to Oracle with your username and password
+CONNECT username/password;
+
+-- Create the Employee table
+CREATE TABLE Employee (
+  EmpCode NUMBER,
+  Name VARCHAR2(6),
+  Salary NUMBER
+);
+
+-- Insert data into the Employee table
+INSERT INTO Employee (EmpCode, Name, Salary)
+VALUES (101, 'Amit', 30000);
+
+INSERT INTO Employee (EmpCode, Name, Salary)
+VALUES (201, 'Kapil', 22000);
+
+INSERT INTO Employee (EmpCode, Name, Salary)
+VALUES (301, 'Rohit', 45000);
+
+INSERT INTO Employee (EmpCode, Name, Salary)
+VALUES (401, 'Amit', 27000);
+
+-- Commit the data
+COMMIT;
+
+-- Attempt to add a new record
+-- This will generate an error, but we'll continue the script
+INSERT INTO Employee (EmpCode, Name, Salary)
+VALUES (901, 'Bhattacharya', 33000);
+
+-- Modify the Name column size to 25
+ALTER TABLE Employee MODIFY (Name VARCHAR2(25));
+
+-- Display the structure of the Employee table
+DESC Employee;
+
+-- See the records of the Employee table
+SELECT * FROM Employee;
+
+-- Try to add the record again (now with Name size 25)
+-- This will work
+INSERT INTO Employee (EmpCode, Name, Salary)
+VALUES (901, 'Bhattacharya', 33000);
+
+-- See the records of the Employee table
+SELECT * FROM Employee;
+
+-- Reduce the size of Name column to 5
+ALTER TABLE Employee MODIFY (Name VARCHAR2(5));
+
+-- Commit the data
+COMMIT;
+
+-- See all records
+SELECT * FROM Employee;
+
+-- Execute various SQL queries and note the results (tasks 18)
+
+-- Create the NewEmp table as a copy of Employee with all records
+CREATE TABLE NewEmp AS SELECT * FROM Employee;
+
+-- See the records of the NewEmp table
+SELECT * FROM NewEmp;
+
+-- Create the Emp2 table as a copy of Employee with no records
+CREATE TABLE Emp2 AS SELECT * FROM Employee WHERE 1 = 0;
+
+-- See the records of all three tables (Employee, NewEmp, and Emp2)
+SELECT * FROM Employee;
+SELECT * FROM NewEmp;
+SELECT * FROM Emp2;
+
+-- See the structure of all three tables (Employee, NewEmp, and Emp2)
+DESC Employee;
+DESC NewEmp;
+DESC Emp2;
+
+-- Create the MyTable table with Name and Salary columns
+CREATE TABLE MyTable AS SELECT Name, Salary FROM Employee;
+
+-- See the records of Employee and MyTable
+SELECT * FROM Employee;
+SELECT * FROM MyTable;
+
+-- See the list of all tables
+SELECT table_name FROM user_tables;
+
+-- Commit your data
+COMMIT;
+
+-- Drop the columns Name and EmpCode from NewEmp
+ALTER TABLE NewEmp DROP COLUMN Name;
+ALTER TABLE NewEmp DROP COLUMN EmpCode;
+
+-- See the records of NewEmp
+SELECT * FROM NewEmp;
+
+-- Truncate the MyTable table
+TRUNCATE TABLE MyTable;
+
+-- See the records of MyTable
+SELECT * FROM MyTable;
+
+-- Rollback
+ROLLBACK;
+
+-- See the records of MyTable after rollback
+SELECT * FROM MyTable;
+
+-- Drop the MyTable table
+DROP TABLE MyTable;
+
+-- See the records of MyTable after drop
+SELECT * FROM MyTable;
+
+-- Rollback
+ROLLBACK;
+
+-- See the records of MyTable after rollback
+SELECT * FROM MyTable;
+
+-- See the list of all tables in your login
+SELECT table_name FROM user_tables;
+
+-- Commit your data
+COMMIT;
+
+-- Disconnect from Oracle
+DISCONNECT;
