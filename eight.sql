@@ -1,0 +1,105 @@
+-- (a) Details of students who are not registered in any course:
+SELECT *
+FROM Student
+WHERE RollNo NOT IN (SELECT RollNo FROM Register);
+
+-- (b) Rollno of students not registered in any course (only Rollno):
+SELECT RollNo
+FROM Student
+WHERE RollNo NOT IN (SELECT RollNo FROM Register);
+
+-- (c) Details of students who are registered in "MCA" course:
+select * from student 
+    where rollno in (select rollno from register 
+    	where coursecode in (select coursecode from course 
+    		where coursename like 'MCA'
+    	)
+    );
+
+SELECT S.*
+FROM Student S
+JOIN Register R ON S.RollNo = R.RollNo
+JOIN Course C ON R.CourseCode = C.CourseCode
+WHERE C.CourseName = 'MCA';
+
+-- (d) List of courses in which no students are registered:
+SELECT C.*
+FROM Course C
+LEFT JOIN Register R ON C.CourseCode = R.CourseCode
+WHERE R.CourseCode IS NULL;
+
+-- (e) List of courses in which at least one student is registered:
+SELECT DISTINCT C.*
+FROM Course C
+JOIN Register R ON C.CourseCode = R.CourseCode;
+
+-- (f) List of courses having fees greater than "BCA" course:
+SELECT *
+FROM Course
+WHERE CourseFees > (SELECT CourseFees FROM Course WHERE CourseName = 'BCA');
+
+-- (g) Total fees of all courses and also show average fees:
+SELECT SUM(CourseFees) AS TotalFees, AVG(CourseFees) AS AverageFees
+FROM Course;
+
+-- (h) Department-wise total fees of all courses:
+SELECT Department, SUM(CourseFees) AS TotalFees
+FROM Course
+GROUP BY Department;
+
+-- (i) Maximum course fee of each department:
+SELECT Department, MAX(CourseFees) AS MaxFee
+FROM Course
+GROUP BY Department;
+
+-- (j) Details of courses which are having fees greater than average fees:
+SELECT *
+FROM Course
+WHERE CourseFees > (SELECT AVG(CourseFees) FROM Course);
+
+-- (k) Details of those courses in which students of "Goa" are registered:
+SELECT C.*
+FROM Course C
+JOIN Register R ON C.CourseCode = R.CourseCode
+JOIN Student S ON R.RollNo = S.RollNo
+WHERE S.City = 'Goa';
+
+-- (l) Increase the fees of all courses by 10% and commit:
+UPDATE Course
+SET CourseFees = CourseFees * 1.1;
+
+COMMIT;
+
+-- (m) View all records of the course table:
+SELECT * FROM Course;
+
+-- (n) Display highest, lowest, and average fees:
+SELECT MAX(CourseFees) AS HighestFees, MIN(CourseFees) AS LowestFees, AVG(CourseFees) AS AverageFees
+FROM Course;
+
+-- (o) Names of students who are registered in a course having fees less than 30000:
+SELECT S.Name
+FROM Student S
+JOIN Register R ON S.RollNo = R.RollNo
+JOIN Course C ON R.CourseCode = C.CourseCode
+WHERE C.CourseFees < 30000;
+
+-- (p) Display course codes along with the total number of registrations in those courses:
+SELECT R.CourseCode, COUNT(*) AS TotalRegistrations
+FROM Register R
+GROUP BY R.CourseCode;
+
+-- (q) Display the total number of students from Goa:
+SELECT COUNT(*) AS TotalStudentsFromGoa
+FROM Student
+WHERE City = 'Goa';
+
+-- (r) Display the highest fees:
+SELECT MAX(CourseFees) AS HighestFees
+FROM Course;
+
+-- (s) Display the 4th highest fees:
+SELECT DISTINCT CourseFees
+FROM Course
+ORDER BY CourseFees DESC
+OFFSET 3 ROWS FETCH NEXT 1 ROW ONLY;
