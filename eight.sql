@@ -9,6 +9,12 @@ FROM Student
 WHERE RollNo NOT IN (SELECT RollNo FROM Register);
 
 -- (c) Details of students who are registered in "MCA" course:
+SELECT Student.RollNo, Student.Name, Student.City, Course.Coursecode, course.coursename, course.coursefees, course.department
+FROM Student
+JOIN Register ON Student.RollNo = Register.RollNo
+JOIN Course ON Register.CourseCode = Course.CourseCode
+where coursename like 'MCA';
+
 select * from student 
     where rollno in (select rollno from register 
     	where coursecode in (select coursecode from course 
@@ -27,6 +33,11 @@ SELECT C.*
 FROM Course C
 LEFT JOIN Register R ON C.CourseCode = R.CourseCode
 WHERE R.CourseCode IS NULL;
+
+SELECT *
+FROM Course
+LEFT JOIN Register ON Course.CourseCode = Register.CourseCode
+WHERE Register.CourseCode IS NULL;
 
 -- (e) List of courses in which at least one student is registered:
 SELECT DISTINCT C.*
@@ -88,6 +99,10 @@ WHERE C.CourseFees < 30000;
 SELECT R.CourseCode, COUNT(*) AS TotalRegistrations
 FROM Register R
 GROUP BY R.CourseCode;
+
+select coursecode, count(*) from register
+group by coursecode;
+
 
 -- (q) Display the total number of students from Goa:
 SELECT COUNT(*) AS TotalStudentsFromGoa
