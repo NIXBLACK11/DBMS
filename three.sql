@@ -122,7 +122,7 @@ SELECT 1 FROM dual;
 9. Write queries for the following :-
 (i) Assign Roll No. “13” to Manish.
 
-
+    UPDATE Students SET name = 'Mansih' WHERE roll_no = 13;
 
 (ii) Assign the name “Abhijeet” to Roll No. 15
 

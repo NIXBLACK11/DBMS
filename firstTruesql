@@ -75,7 +75,6 @@ SELECT * FROM Student;
 -- 20. Display the structure of the "Student" table
 DESC Student;
 
-
 -- 21. Set the email of 'Amit' to 'abc@xyz'
 UPDATE Student SET Email = 'abc@xyz' WHERE Name = 'Amit';
 
