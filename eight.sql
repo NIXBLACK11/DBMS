@@ -1,3 +1,34 @@
+-- Insert into "Student" Table
+INSERT ALL
+    INTO Student (RollNo, Name, City) VALUES (1, 'Amit', 'Delhi')
+    INTO Student (RollNo, Name, City) VALUES (2, 'Sumit', 'Goa')
+    INTO Student (RollNo, Name, City) VALUES (3, 'Shweta', 'Gwaliar')
+    INTO Student (RollNo, Name, City) VALUES (4, 'Kumar', 'Goa')
+    INTO Student (RollNo, Name, City) VALUES (5, 'Puneet', 'Meerut')
+    INTO Student (RollNo, Name, City) VALUES (6, 'Bharat', 'Gwaliar')
+SELECT * FROM dual;
+
+-- Insert into "Course" Table
+INSERT ALL
+    INTO Course (CourseId, CourseName, Coursefees, Department) VALUES (101, 'MCA', 80000, 'MCA')
+    INTO Course (CourseId, CourseName, Coursefees, Department) VALUES (102, 'MBA', 60000, 'MBA')
+    INTO Course (CourseId, CourseName, Coursefees, Department) VALUES (103, 'Btech', 75000, 'Engg')
+    INTO Course (CourseId, CourseName, Coursefees, Department) VALUES (104, 'BCA', 30000, 'MCA')
+    INTO Course (CourseId, CourseName, Coursefees, Department) VALUES (105, 'BSc(IT)', 25000, 'MCA')
+    INTO Course (CourseId, CourseName, Coursefees, Department) VALUES (106, 'MSc(IT)', 35000, 'MCA')
+    INTO Course (CourseId, CourseName, Coursefees, Department) VALUES (107, 'BBA', 22000, 'MBA')
+SELECT * FROM dual;
+
+-- Insert into "Register" Table
+INSERT ALL
+    INTO Register (RollNo, CourseId) VALUES (2, 101)
+    INTO Register (RollNo, CourseId) VALUES (4, 103)
+    INTO Register (RollNo, CourseId) VALUES (5, 101)
+    INTO Register (RollNo, CourseId) VALUES (3, 105)
+    INTO Register (RollNo, CourseId) VALUES (1, 103)
+SELECT * FROM dual;
+
+
 -- (a) Details of students who are not registered in any course:
 SELECT *
 FROM Student
