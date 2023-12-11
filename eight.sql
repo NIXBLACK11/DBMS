@@ -138,7 +138,7 @@ group by coursecode;
 -- (q) Display the total number of students from Goa:
 SELECT COUNT(*) AS TotalStudentsFromGoa
 FROM Student
-WHERE City = 'Goa';
+WHERE City like 'Goa';
 
 -- (r) Display the highest fees:
 SELECT MAX(CourseFees) AS HighestFees
