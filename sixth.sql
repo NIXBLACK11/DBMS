@@ -147,3 +147,55 @@ VALUES
 -- Create a Register5 table with primary and foreign key constraints to ensure "In one course only one student is allowed to take admission"
 
 -- Insert data into the Register5 table and note output in each case
+
+-- Register3 Table (One Student is allowed to take admission in One Course Only)
+CREATE TABLE Register3 (
+    RollNo NUMBER,
+    CourseCode NUMBER,
+    PRIMARY KEY (RollNo),
+    FOREIGN KEY (CourseCode) REFERENCES Course(CourseCode)
+);
+
+-- Insert data into Register3 table and note output in each case
+-- Note: You should handle missing CourseCode in your application logic to avoid foreign key constraint violations.
+INSERT INTO Register3 (RollNo, CourseCode) VALUES (1, 101);
+INSERT INTO Register3 (RollNo, CourseCode) VALUES (2, 102);
+-- Insert data with missing CourseCode (This will cause a foreign key constraint violation)
+-- INSERT INTO Register3 (RollNo) VALUES (3); -- This will fail
+-- View contents of Register3 table
+-- SELECT * FROM Register3;
+
+-- Register4 Table (Eliminate the problem in Register3)
+CREATE TABLE Register4 (
+    RollNo NUMBER,
+    CourseCode NUMBER,
+    PRIMARY KEY (RollNo, CourseCode),
+    FOREIGN KEY (CourseCode) REFERENCES Course(CourseCode)
+);
+
+-- Insert data into Register4 table and note output in each case
+-- Note: Since the primary key is on both RollNo and CourseCode, it allows one student to take admission in one course only.
+INSERT INTO Register4 (RollNo, CourseCode) VALUES (1, 101);
+INSERT INTO Register4 (RollNo, CourseCode) VALUES (2, 102);
+-- Insert data with missing CourseCode (This will fail due to the primary key constraint)
+-- INSERT INTO Register4 (RollNo) VALUES (3); -- This will fail
+-- View contents of Register4 table
+-- SELECT * FROM Register4;
+
+-- Register5 Table (In one course only one student is allowed to take admission)
+CREATE TABLE Register5 (
+    RollNo NUMBER,
+    CourseCode NUMBER,
+    PRIMARY KEY (CourseCode),
+    FOREIGN KEY (RollNo) REFERENCES Student(RollNo),
+    FOREIGN KEY (CourseCode) REFERENCES Course(CourseCode)
+);
+
+-- Insert data into Register5 table and note output in each case
+-- Note: This ensures that in one course only one student is allowed to take admission.
+INSERT INTO Register5 (RollNo, CourseCode) VALUES (1, 101);
+INSERT INTO Register5 (RollNo, CourseCode) VALUES (2, 102);
+-- Insert duplicate data for the same course (This will fail due to the primary key constraint)
+-- INSERT INTO Register5 (RollNo, CourseCode) VALUES (3, 101); -- This will fail
+-- View contents of Register5 table
+-- SELECT * FROM Register5;

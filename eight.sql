@@ -104,7 +104,7 @@ SELECT C.*
 FROM Course C
 JOIN Register R ON C.CourseCode = R.CourseCode
 JOIN Student S ON R.RollNo = S.RollNo
-WHERE S.City = 'Goa';
+WHERE S.City like 'Goa';
 
 -- (l) Increase the fees of all courses by 10% and commit:
 UPDATE Course

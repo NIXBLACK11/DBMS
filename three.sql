@@ -114,9 +114,9 @@ SELECT 1 FROM dual;
 8. Insert the following data further into the same table.
 
     INSERT ALL
-    INTO Students (Roll_No, Name, City, Pincode, Age) VALUES (12, 'Amit', 'Rampur', '312125', NULL)
-    INTO Students (Roll_No, Name, City, Pincode, Age) VALUES (14, 'Aviral', '', '314123', 29)
-    INTO Students (Roll_No, Name, City, Pincode, Age) VALUES (15, '', 'Gwaliar', '313149', 25)
+        INTO Students (Roll_No, Name, City, Pincode, Age) VALUES (12, 'Amit', 'Rampur', '312125', NULL)
+        INTO Students (Roll_No, Name, City, Pincode, Age) VALUES (14, 'Aviral', '', '314123', 29)
+        INTO Students (Roll_No, Name, City, Pincode, Age) VALUES (15, '', 'Gwaliar', '313149', 25)
     SELECT 1 FROM dual;
 
 9. Write queries for the following :-
