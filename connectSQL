@@ -1,0 +1,4 @@
+connect sys as sysdba;
+startup;
+create user Siddharth identified by root;
+grant connect, resource to Siddharth;
