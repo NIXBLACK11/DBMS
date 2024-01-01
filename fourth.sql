@@ -1,4 +1,4 @@
--- 1. Logon to Oracle using your User Name and check your user name
+-- 1. Login to Oracle using your User Name and check your user name
 CONNECT your_username;
 SELECT USER FROM DUAL;
 
